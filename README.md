@@ -1,5 +1,6 @@
-# react-node-webpack-boilerplate
-A starter pack to set up a React app using a Node/Express backend, all bundled using Webpack.
+# React Arcade
+A ReactJS / PhaserJS arcade featuring NodeJS, SocketIO, Express, Webpack, RESTAPI
+Play on a computer monitor and use your phones as controllers.
 
 ## Getting started
 1. Run `npm install`.
@@ -15,3 +16,5 @@ Here is a breakdown of the included npm scripts
 * `build-prod` - creates a production build of client and server.
 * `build-dev` - creates a development build of the server which builds the client with WebpackDevMiddleware.
 
+## Boilerplated from:
+https://github.com/WillBeesOn/react-node-webpack-boilerplate
