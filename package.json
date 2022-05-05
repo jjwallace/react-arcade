@@ -13,13 +13,17 @@
     "build-dev": "webpack --mode development --config ./webpack_config/webpack.server.dev.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "http-server": "^14.1.0",
     "morgan": "^1.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^6.3.0",
     "react-scripts": "3.0.1",
+    "socket.io": "^4.5.0",
     "socket.io-client": "^4.5.0"
   },
   "devDependencies": {
