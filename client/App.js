@@ -1,26 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import * as serviceWorker from './serviceWorker';
 
 import Home from "./pages/Home";
-import Player from "./pages/Player";
+import Game from "./pages/Game";
 
 //import logo from './logo.svg';
 import './App.css';
 
 export default function App() {
+
   return (
-    <BrowserRouter>
+    <Router>
+      <Home />
       <Routes>
-        <Route path="/" element={<Home />}>
-          <Route index element={<Home />} />
-          <Route path="player" element={<Player />} />
-          <Route path="*" element={<Home />} />
-        </Route>
+        <Route path="/" element={<Game />} />
+        <Route path="/game" element={<Game />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

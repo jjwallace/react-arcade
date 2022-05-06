@@ -1,5 +1,6 @@
 # React Arcade
 A ReactJS / PhaserJS arcade featuring NodeJS, SocketIO, Express, Webpack, RESTAPI
+
 Play on a computer monitor and use your phones as controllers.
 
 ## Getting started
@@ -18,3 +19,6 @@ Here is a breakdown of the included npm scripts
 
 ## Boilerplated from:
 https://github.com/WillBeesOn/react-node-webpack-boilerplate
+
+## Phaser 3.0 code examples from:
+https://phaser.io/examples

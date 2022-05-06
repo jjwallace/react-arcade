@@ -5,6 +5,9 @@ import http from 'http';
 import socketIO from 'socket.io';
 import httpServer from 'http-server';
 import cors from 'cors';
+//import {v4 as UUIDv4} from 'UUID' 
+
+//import routes from 'routes';
 
 dotenv.config();
 const app = express();
@@ -24,9 +27,11 @@ const io = socketIO(socketServer, {
 
  app.use(cors()); // add this line
 
+ console.log('NSERVER NOW RUNNING!!!!');
+
 // This is what the socket.io syntax is like, we will work this later
 io.on('connection', socket => {
-  console.log('New client connected')
+  console.log('New client connected', socket.id);
 
   // just like on the client side, we have a socket.on method that takes a callback function
   socket.on('change color', (color) => {
@@ -38,12 +43,12 @@ io.on('connection', socket => {
 
   // disconnect is fired when a client leaves the server
   socket.on('disconnect', () => {
-    console.log('user disconnected')
+    console.log('user disconnected', socket.id)
   })
 })
 
  // Specifying to use urlencoded
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: false }))
 
 //URL which will accept socket connection
 //const liveData = io.of("/liveData");
@@ -53,6 +58,8 @@ const port = 4001;
 io.listen(port, () => {
    console.log(`Socket Server listening on port ${port}`)
 });
+
+
 
 // request handlers
 app.get('/test', (req, res) => {

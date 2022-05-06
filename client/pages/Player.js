@@ -1,4 +1,4 @@
-// Updated. Thanks to: Paul Luna
+
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 
@@ -23,8 +23,10 @@ class Home extends Component {
   ///
 
   // adding the function
-  setColor = (color) => {
+  pushButton = (color) => {
     this.setState({ color })
+    const socket = socketIOClient(this.state.endpoint);
+    socket.emit('change color', this.state.color) // change 'red' to this.state.color
   }
 
   componentDidMount = () => {
@@ -42,14 +44,9 @@ class Home extends Component {
 
     return (
       <div style={{ textAlign: "center" }}>
-        <button onClick={() => this.send() }>Change Color</button>
 
-
-
-        <button id="blue" onClick={() => this.setColor('blue')}>Blue</button>
-        <button id="red" onClick={() => this.setColor('red')}>Red</button>
-
-        this is player
+        <button id="blue" onClick={() => this.pushButton('left')}>Blue</button>
+        <button id="red" onClick={() => this.pushButton('right')}>Red</button>
 
       </div>
     )

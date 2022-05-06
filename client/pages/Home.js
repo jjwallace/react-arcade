@@ -1,4 +1,4 @@
-// Updated. Thanks to: Paul Luna
+
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 
@@ -9,7 +9,7 @@ class Home extends Component {
       endpoint: "localhost:4001",
 
       ///
-      color: 'black'
+      color: 'white'
       ///
 
     };
@@ -23,8 +23,10 @@ class Home extends Component {
   ///
 
   // adding the function
-  setColor = (color) => {
+  pushButton = (color) => {
     this.setState({ color })
+    const socket = socketIOClient(this.state.endpoint);
+    socket.emit('change color', this.state.color) // change 'red' to this.state.color
   }
 
   componentDidMount = () => {
@@ -38,18 +40,11 @@ class Home extends Component {
   render() {
     // testing for socket connections
 
-    const socket = socketIOClient(this.state.endpoint);
-
     return (
       <div style={{ textAlign: "center" }}>
-        <button onClick={() => this.send() }>Change Color</button>
 
-
-
-        <button id="blue" onClick={() => this.setColor('blue')}>Blue</button>
-        <button id="red" onClick={() => this.setColor('red')}>Red</button>
-
-        this is home
+        <button id="blue" onClick={() => this.pushButton('blue')}>Blue</button>
+        <button id="red" onClick={() => this.pushButton('red')}>Red</button>
 
       </div>
     )
