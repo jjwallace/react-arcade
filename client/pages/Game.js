@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import Phaser from 'phaser'
-import { IonPhaser } from '@ion-phaser/react'
+import React, { Component } from 'react';
+import Phaser from 'phaser';
+import { IonPhaser } from '@ion-phaser/react';
+import socketIOClient from "socket.io-client";
 
 export default class Game extends Component {
   state = {
@@ -11,7 +12,7 @@ export default class Game extends Component {
       type: Phaser.AUTO,
       scene: {
         init: function() {
-          this.cameras.main.setBackgroundColor('#24252A')
+          this.cameras.main.setBackgroundColor('#24252A');
         },
         create: function() {
           this.helloWorld = this.add.text(
@@ -31,7 +32,7 @@ export default class Game extends Component {
     }
   }
   render() {
-    const { initialize, game } = this.state
+    const { initialize, game } = this.state;
     return (
       <IonPhaser game={game} initialize={initialize} />
     )
