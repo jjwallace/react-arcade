@@ -5,7 +5,7 @@ import socketIOClient from "socket.io-client";
 
 export default class Game extends Component {
   state = {
-    initialize: false,
+    initialize: true,
     game: {
       width: "100%",
       height: "100%",
@@ -24,6 +24,7 @@ export default class Game extends Component {
             }
           );
           this.helloWorld.setOrigin(0.5);
+          console.log('create function operational')
         },
         update: function() {
           this.helloWorld.angle += 1;
@@ -34,7 +35,7 @@ export default class Game extends Component {
   render() {
     const { initialize, game } = this.state;
     return (
-      <IonPhaser game={game} initialize={initialize} />
+        <IonPhaser game={game} initialize={initialize} />
     )
   }
 }

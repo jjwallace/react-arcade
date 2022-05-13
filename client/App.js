@@ -14,11 +14,11 @@ export default function App() {
 
   return (
     <Router>
-      <Home />
-      <Routes>
+      <Game />
+      {/* <Routes>
         <Route path="/" element={<Game />} />
         <Route path="/game" element={<Game />} />
-      </Routes>
+      </Routes> */}
     </Router>
   );
 }
