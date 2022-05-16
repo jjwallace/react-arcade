@@ -17,6 +17,13 @@ const PORT = process.env.PORT;
 const server = http.createServer(app);
 const socketServer = http.createServer(app);
 
+var gameData = {
+  gameState: 'pause',
+  entities: {
+    players: []
+  }
+}
+
 // This creates our socket using the instance of the server
 const io = socketIO(socketServer, {
    cors: {
@@ -33,6 +40,10 @@ const io = socketIO(socketServer, {
 io.on('connection', socket => {
   console.log('New client connected', socket.id);
 
+  //Add Player to player list
+  gameData.entities.players.push(socket.id);
+  console.log('Player List: ', gameData.entities.players);
+
   // just like on the client side, we have a socket.on method that takes a callback function
   socket.on('change color', (color) => {
     // once we get a 'change color' event from one of our clients, we will send it to the rest of the clients
@@ -43,7 +54,8 @@ io.on('connection', socket => {
 
   // disconnect is fired when a client leaves the server
   socket.on('disconnect', () => {
-    console.log('user disconnected', socket.id)
+    gameData.entities.players = gameData.entities.players.filter(v => v !== socket.id); 
+    console.log('user disconnected', socket.id, 'User Array: ', gameData.entities.players);
   })
 })
 
