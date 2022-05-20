@@ -5,6 +5,7 @@ import http from 'http';
 import socketIO from 'socket.io';
 import httpServer from 'http-server';
 import cors from 'cors';
+import Events from './events/Events';
 //import {v4 as UUIDv4} from 'UUID' 
 
 
@@ -44,12 +45,21 @@ io.on('connection', socket => {
   gameData.players.push({id: socket.id, x:0, y:0});
   console.log('Player List: ', gameData.players);
 
+  //const events = new Events(socket, gameData);
+
   // just like on the client side, we have a socket.on method that takes a callback function
   socket.on('change name', (name) => {
-    // once we get a 'change color' event from one of our clients, we will send it to the rest of the clients
-    // we make use of the socket.emit method again with the argument given to use from the callback function above
-    console.log('Player Set Name: ', name, socket.id);
-    //io.sockets.emit('change color', name)
+    
+    const targetIndex = gameData.players.findIndex(v => v.id === socket.id);
+    if(targetIndex == null){
+      console.error('PLAYER NOT FOUND ON NAME CHANGE REQUEST');
+    }else{
+      console.log(gameData.players[targetIndex],targetIndex)
+      gameData.players[targetIndex].name = name;
+      console.log('Player Set Name: ', name, socket.id);
+      console.log('Player List: ', gameData.players);
+    }
+    
   })
 
   // disconnect is fired when a client leaves the server

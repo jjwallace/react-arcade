@@ -40,12 +40,12 @@ export default class EnterPlayerName extends Component {
   handleSubmit(event) {
     event.preventDefault();
     event.stopPropagation();
-
-    this.setState({finalName: this.state.name});
-    if(this.state.finalName == ""){
-      gsap.to(".submit-name-box", 0.1, {x:"+=20", yoyo:true, repeat:5, ease: "introWiggle"});
-      gsap.to(".submit-name-box", 0.1, {backgroundColor: "#ffAF50", yoyo:true, ease: "strong.inOut"});
-      gsap.to(".submit-name-box", 0.9, {backgroundColor: "white", delay: 0.1, yoyo:true, ease: "strong.inOut"});
+    var finalName = this.state.name;
+    this.setState({finalName: finalName});
+    if(finalName == ""){
+      gsap.to(".submit-name-box", {x:"+=20", duration: 0.1, yoyo:true, repeat:5, ease: "introWiggle"});
+      gsap.to(".submit-name-box", {backgroundColor: "#ffAF50", duration: 0.1, yoyo:true, ease: "strong.inOut"});
+      gsap.to(".submit-name-box", {backgroundColor: "white", duration: 0.9, delay: 0.1, yoyo:true, ease: "strong.inOut"});
       return;
     }
     
@@ -54,7 +54,8 @@ export default class EnterPlayerName extends Component {
     gsap.to(".submit-name-title", {fontSize: 30, duration: 1, ease: "strong.inOut"});
     gsap.to(".submit-box", {y: -300, delay: 1, duration: 3, ease: "strong.inOut"});
 
-    Connect.emit('change name', this.state.finalName);
+    console.log('change name', finalName);
+    Connect.emit('change name', finalName);
   }
   
 
