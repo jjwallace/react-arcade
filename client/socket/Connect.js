@@ -4,9 +4,12 @@ import socketIOClient from "socket.io-client";
 class Connect {
     
     constructor(){
+
         const config = {
-            endpoint: "localhost:4001"
+            endpoint: window.location.hostname + ":4001"
         }
+
+        console.log('Socket Endpoint: ', config.endpoint)
 
         // if(Singleton._instance){
         //     console.warn("already created!");
@@ -35,6 +38,14 @@ class Connect {
 
     emit(title, data){
         console.log("Emit Data '" + title + "' : ", data);
+        if(title == ""){
+            console.warn("Socket Emit Title Null");
+            return;
+        }
+        if(data == ""){
+            console.warn("Socket Emit Data Null");
+            return;
+        }
         this.socket.emit(title, data) 
     }
 

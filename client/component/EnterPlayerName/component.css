@@ -1,0 +1,98 @@
+.submit-box{
+    text-align: center;
+    transition: height 1.5s;
+    z-index: 60;
+    position: absolute; 
+}
+.submit-name-box{
+    border-radius: 30px 30px 30px 30px;
+    background-color: #e0e0e0; /* Green */
+    border: none;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    -webkit-animation-name: bounceIn; 
+    animation-name: bounceIn;
+}
+.submit-name{
+    border-radius: 20px 0px 0px 20px;
+    background-color: #3a3a3a; /* Green */
+    border: none;
+    border-style: none;
+    border-width: 0;
+    color: rgb(177, 177, 177);
+    font-size:16px;
+    font-weight: bold;
+    padding:15px;
+    margin:0px;
+}
+.submit-name-button{
+    border-radius: 0px 20px 20px 0px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+.submit-name-title{
+    color: rgb(54, 54, 54);
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+
+@-webkit-keyframes bounceIn {
+    0% {
+       opacity: 0;
+       -webkit-transform: scale(.3);
+    }
+    50% {
+       opacity: 1;
+       -webkit-transform: scale(1.05);
+    }
+    70% {
+       -webkit-transform: scale(.9);
+    }
+    100% {
+       -webkit-transform: scale(1);
+    }
+ }
+ 
+ @keyframes bounceIn {
+    0% {
+       opacity: 0;
+       transform: scale(.3);
+    }
+    50% {
+       opacity: 1; 
+       transform: scale(1.05);
+    }
+    70% {
+       transform: scale(.9);
+    }
+    100% {
+       transform: scale(1);
+    }
+ }
+
+
+
+.enter-player-name-input { 
+    z-index: 70;
+    position: absolute; 
+    top: 0;
+}

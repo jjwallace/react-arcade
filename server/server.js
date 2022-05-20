@@ -7,6 +7,7 @@ import httpServer from 'http-server';
 import cors from 'cors';
 //import {v4 as UUIDv4} from 'UUID' 
 
+
 //import routes from 'routes';
 
 dotenv.config();
@@ -19,9 +20,8 @@ const socketServer = http.createServer(app);
 
 var gameData = {
   gameState: 'pause',
-  entities: {
-    players: []
-  }
+  players: [],
+  entities: []
 }
 
 // This creates our socket using the instance of the server
@@ -41,23 +41,28 @@ io.on('connection', socket => {
   console.log('New client connected', socket.id);
 
   //Add Player to player list
-  gameData.entities.players.push(socket.id);
-  console.log('Player List: ', gameData.entities.players);
+  gameData.players.push({id: socket.id, x:0, y:0});
+  console.log('Player List: ', gameData.players);
 
   // just like on the client side, we have a socket.on method that takes a callback function
-  socket.on('change color', (color) => {
+  socket.on('change name', (name) => {
     // once we get a 'change color' event from one of our clients, we will send it to the rest of the clients
     // we make use of the socket.emit method again with the argument given to use from the callback function above
-    console.log('Color Changed to: ', color)
-    io.sockets.emit('change color', color)
+    console.log('Player Set Name: ', name, socket.id);
+    //io.sockets.emit('change color', name)
   })
 
   // disconnect is fired when a client leaves the server
   socket.on('disconnect', () => {
-    gameData.entities.players = gameData.entities.players.filter(v => v !== socket.id); 
-    console.log('user disconnected', socket.id, 'User Array: ', gameData.entities.players);
+    gameData.players = gameData.players.filter(v => v.id !== socket.id); 
+    console.log('user disconnected', socket.id, 'User Array: ', gameData.players);
   })
 })
+
+io.on("connect_error", (err) => {
+  console.log(`connect_error due to ${err.message}`);
+  alert(`connect_error due to ${err.message}`);
+});
 
  // Specifying to use urlencoded
 app.use(express.urlencoded({ extended: false }))
@@ -71,7 +76,7 @@ io.listen(port, () => {
    console.log(`Socket Server listening on port ${port}`)
 });
 
-
+//app.get('/', ({ url: { path: pathname = '/' } }, res) => res.send(renderToString(routes, pathname)))
 
 // request handlers
 app.get('/test', (req, res) => {
