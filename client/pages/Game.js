@@ -7,6 +7,8 @@ import ip from "ip";
 import Connect from "../socket/Connect";
 import EnterPlayerName from "../component/EnterPlayerName/EnterPlayerName";
 
+import Controller from '../scene/Controller';
+
 import './styles.css';
 
 export default class Game extends Component {
@@ -16,26 +18,7 @@ export default class Game extends Component {
       width: "100%",
       height: "100%",
       type: Phaser.AUTO,
-      scene: {
-        init: function() {
-          this.cameras.main.setBackgroundColor('#24252A');
-        },
-        create: function() {
-          this.helloWorld = this.add.text(
-            this.cameras.main.centerX, 
-            this.cameras.main.centerY, 
-            "Hello World", { 
-              font: "40px Arial", 
-              fill: "#ffffff" 
-            }
-          );
-          this.helloWorld.setOrigin(0.5);
-          console.log('create function operational')
-        },
-        update: function() {
-          this.helloWorld.angle += 1;
-        }
-      }
+      scene: Controller
     }
   }
 
